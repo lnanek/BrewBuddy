@@ -4,7 +4,7 @@
 
 var BARS = [
 		{
-			name : "Mulvaney's B&L",
+			name : "Mulvaney&quot;s B&amp;L",
 			lat : 38.568166,
 			lon : -121.443043,
 			stock : [
@@ -14,12 +14,12 @@ var BARS = [
 			description : "1215 19th St, Sacramento, CA<br />(916) 441-6022<br />mulvaneysbl.com"
 		},
 		{
-			name : "DeVere's Irish Pub",
+			name : "DeVere&quot;s Irish Pub",
 			lat : 38.576058,
 			lon : -121.486729,
 			stock : [ "Sierra Nevada Pale Ale | Sierra Nevada Brewing Company",
 					"Lagunitas IPA | Lagunitas Brewing Company",
-					"Firestone Walker's Reserve | Firestone Walker Brewing Company" ],
+					"Firestone Walker&quot;s Reserve | Firestone Walker Brewing Company" ],
 			description : "1531 L St, Sacramento, CA<br />(916) 231-9947<br />deverespub.com"
 		},
 		{
@@ -143,18 +143,10 @@ function onSuccess(position) {
 		$('#brewList').append($(newListItem));
 	}
 
-	$('#brewList').listview("refresh");
-
 	$('#brewList').show();
 	$('#loadingMessage').hide();
 
-	// Show locaction if debug display element present.
-	var element = document.getElementById('geolocation');
-	if (element == null) {
-		return;
-	}
-	element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />'
-			+ 'Longitude: ' + position.coords.longitude + '<br />';
+	$('#brewList').listview("refresh");
 
 }
 
@@ -206,8 +198,9 @@ function loadBars() {
 	for ( var i = 0; i < barsWithStock.length; i++ ) {	
 		var bar = barsWithStock[i];
 				
-		var newListItem = '<li data-icon="myarrow"><div><a onclick=\'selectBar("' + bar.id + '")\' >' 
-			+ bar.name + '</a> ' + bar.distanceMiRounded + ' mi.</div></li>';
+		var newListItem = '<li data-icon="myarrow"><a onclick=\'selectBar("' + bar.id + '")\' >' 
+			+ bar.name + '<span class="ui-li-count">' + bar.distanceMiRounded + ' mi.</span></a></li>';		
+		
 		$('#barList').append($(newListItem));
 		
 	}
@@ -233,7 +226,7 @@ function selectBar(barIndex) {
 			bar.name + 
 			"<br /><br />" + 
 			bar.description + 
-			"</a><br /><br />These brews are on tap:<br />");
+			"</a><br /><br />These brews are on tap:<br /><br />");
 	
 	for( var i = 0; i < bar.stock.length; i++ ) {
 		var stock = bar.stock[i];
