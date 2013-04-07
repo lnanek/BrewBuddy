@@ -7,7 +7,8 @@ var BARS = [ {
 	stock : ["Sierra Nevada Ovila Abbey Quad | Sierra Nevada",
 	         "Scrimshaw Pilsner Style Beer | North Coast Brewing Co",
 	         "Heroine India Pale Ale | 101 North Brewing Company"
-	         ]	
+	         ],
+	description: "1215 19th St, Sacramento, CA\n(916) 441-6022\nmulvaneysbl.com"
 }, {
 	name : "DeVere's Irish Pub",
 	lat : 38.576058,
@@ -15,14 +16,16 @@ var BARS = [ {
 	stock : ["Sierra Nevada Pale Ale | Sierra Nevada Brewing Company",
 	         "Lagunitas IPA | Lagunitas Brewing Company",
 	         "Firestone Walker's Reserve | Firestone Walker Brewing Company"
-	         ]	
+	         ]	,
+	description: "1531 L St, Sacramento, CA\n(916) 231-9947\ndeverespub.com"
 }, {
 	name : "Old Soul at the Weatherstone",
 	lat : 38.589504,
 	lon : -121.486816,
 	stock : ["West Coast IPA | Green Flash Brewing Company",
 	         "Irish Red Ale | Rubicon Brewing Company",
-	         ]	
+	         ]	,
+	description: "812 21st St, Sacramento, CA\n(916) 443-6340\noldsoulco.com"
 } ];
 
 var CURRENT_LOCATION_LAT_KEY = "CURRENT_LOCATION_LAT_KEY";
