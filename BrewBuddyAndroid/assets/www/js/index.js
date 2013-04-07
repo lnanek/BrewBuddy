@@ -11,7 +11,7 @@ var BARS = [
 					"Sierra Nevada Ovila Abbey Quad | Sierra Nevada Brewing Company",
 					"Scrimshaw Pilsner Style Beer | North Coast Brewing Co",
 					"Heroine India Pale Ale | 101 North Brewing Company" ],
-			description : "1215 19th St, Sacramento, CA\n(916) 441-6022\nmulvaneysbl.com"
+			description : "1215 19th St, Sacramento, CA<br />(916) 441-6022<br />mulvaneysbl.com"
 		},
 		{
 			name : "DeVere's Irish Pub",
@@ -20,7 +20,7 @@ var BARS = [
 			stock : [ "Sierra Nevada Pale Ale | Sierra Nevada Brewing Company",
 					"Lagunitas IPA | Lagunitas Brewing Company",
 					"Firestone Walker's Reserve | Firestone Walker Brewing Company" ],
-			description : "1531 L St, Sacramento, CA\n(916) 231-9947\ndeverespub.com"
+			description : "1531 L St, Sacramento, CA<br />(916) 231-9947<br />deverespub.com"
 		},
 		{
 			name : "Old Soul at the Weatherstone",
@@ -28,7 +28,7 @@ var BARS = [
 			lon : -121.486816,
 			stock : [ "West Coast IPA | Green Flash Brewing Company",
 					"Irish Red Ale | Rubicon Brewing Company", ],
-			description : "812 21st St, Sacramento, CA\n(916) 443-6340\noldsoulco.com"
+			description : "812 21st St, Sacramento, CA<br />(916) 443-6340<br />oldsoulco.com"
 		} ];
 
 var CURRENT_LOCATION_LAT_KEY = "CURRENT_LOCATION_LAT_KEY";
@@ -184,6 +184,8 @@ function loadBars() {
 		if ( -1 != bar.stock.indexOf(stock) ) {
 			barsWithStock.push(bar);
 			
+			bar.id = i;
+			
 			var distanceKm = distance(userLat, userLon, bar.lat, bar.lon);
 			var distanceMi = kmToMiles(distanceKm);
 			var distanceMiRounded = Math.round(distanceMi*10)/10;
@@ -195,15 +197,32 @@ function loadBars() {
 	
 	for ( var i = 0; i < barsWithStock.length; i++ ) {	
 		var bar = barsWithStock[i];
-		
-		var ll = bar.lat + "," + bar.lon;
-		
-		var newListItem = '<li data-icon="myarrow"><div><a target="_blank" href="http://maps.google.com/?q=' + ll + '" >' 
+				
+		var newListItem = '<li data-icon="myarrow"><div><a onclick=\'selectBar("' + bar.id + '")\' >' 
 			+ bar.name + '</a> ' + bar.distanceMiRounded + ' mi.</div></li>';
 		$('#barList').append($(newListItem));
 		
 	}
 	
-	$('#barList').listview("refresh");
+	//$('#barList').listview("refresh");
 
 }	
+
+function selectBar(barIndex) {
+	
+	console.log('selectBar = ' + barIndex);
+	window.location.href = "#detailPage";
+	
+	var bar = BARS[barIndex];
+	
+	var ll = bar.lat + "," + bar.lon;
+	var url = "http://maps.google.com/?q=" + ll;
+
+	$('#detailContent').append(
+			"<a href='" + url + "'>" + 
+			bar.name + 
+			"<br /><br />" + 
+			bar.description + 
+			"</a>");
+	
+}
