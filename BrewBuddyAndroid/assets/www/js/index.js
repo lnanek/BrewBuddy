@@ -7,6 +7,8 @@
     //
     function onDeviceReady() {
         navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        
+        $('#brewList').hide();
     }
 
     // onSuccess Geolocation
@@ -16,7 +18,8 @@
     	setCurrentLocationLat(position.coords.latitude);
     	setCurrentLocationLon(position.coords.longitude);
 
-        window.location.href = "brews.html";
+        $('#brewList').show();
+        $('#loadingMessage').hide();
 
         // Show locaction if debug display element present.
         var element = document.getElementById('geolocation');
