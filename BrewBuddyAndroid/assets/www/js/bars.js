@@ -1,16 +1,3 @@
-var BARS = [ {
-	name : "Drake's Brewing Co. - 1933 Davis Street, San Leandro",
-	lat : 40.7142,
-	lon : -74.0064
-}, {
-	name : "Triple Rock Brewery & Alehouse - 1920 Shattuck Avenue, Berkeley",
-	lat : 42.7142,
-	lon : -74.0064
-}, {
-	name : "Hoptown Brewing Company - 3015 Hopyard Road #D, Pleasanton",
-	lat : 30.7142,
-	lon : -74.0064
-} ];
 
 // Wait for Cordova to load
 //
@@ -23,18 +10,32 @@ function onDeviceReady() {
 	var userLat = getCurrentLocationLat();
 	var userLon = getCurrentLocationLon();
 	
+	var stock = getSelectedBrew();
+	
+	var barsWithStock = [];
 	for ( var i = 0; i < BARS.length; i++ ) {
 		var bar = BARS[i];
 		console.log("bar name: " + bar.name);		
 		
-		var distanceKm = distance(userLat, userLon, bar.lat, bar.lon);
-		var distanceMi = kmToMiles(distanceKm);
-		var distanceMiRounded = Math.round(distanceMi*10)/10;
+		if ( -1 != bar.stock.indexOf(stock) ) {
+			barsWithStock.push(bar);
+			
+			var distanceKm = distance(userLat, userLon, bar.lat, bar.lon);
+			var distanceMi = kmToMiles(distanceKm);
+			var distanceMiRounded = Math.round(distanceMi*10)/10;
+			bar.distanceMiRounded = distanceMiRounded;
+		}
+	}
+	
+	barsWithStock.sort(function(a,b){return a.distanceMiRounded - b.distanceMiRounded});
+	
+	for ( var i = 0; i < barsWithStock.length; i++ ) {	
+		var bar = barsWithStock[i];
 		
 		var ll = bar.lat + "," + bar.lon;
 		
 		var newListItem = '<li data-icon="myarrow"><div><a target="_blank" href="http://maps.google.com/?q=' + ll + '" >' 
-			+ bar.name + '</a> ' + distanceMiRounded + ' mi.</div></li>';
+			+ bar.name + '</a> ' + bar.distanceMiRounded + ' mi.</div></li>';
 		$('#barList').append($(newListItem));
 		
 	}
