@@ -133,6 +133,8 @@ function onSuccess(position) {
 	}
 	allStocks.sort();
 
+	$('#brewList').html(''); 
+	
 	for ( var i = 0; i < allStocks.length; i++) {
 		var stock = allStocks[i];
 
@@ -160,7 +162,7 @@ function selectStock(stock) {
 	console.log('selected stock');
 	setSelectedBrew(stock);
 	window.location.href = "#barPage";
-	loadBars();
+	//loadBars();
 }
 
 // onError Callback receives a PositionError object
@@ -168,6 +170,10 @@ function selectStock(stock) {
 function onError(error) {
 	alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
 }
+
+$(document).delegate('#barPage', 'pageshow', function () {
+	loadBars();
+});
 
 function loadBars() {
 	
@@ -195,6 +201,8 @@ function loadBars() {
 	
 	barsWithStock.sort(function(a,b){return a.distanceMiRounded - b.distanceMiRounded});
 	
+	$('#barList').html(''); 
+	
 	for ( var i = 0; i < barsWithStock.length; i++ ) {	
 		var bar = barsWithStock[i];
 				
@@ -204,7 +212,7 @@ function loadBars() {
 		
 	}
 	
-	//$('#barList').listview("refresh");
+	$('#barList').listview("refresh");
 
 }	
 
@@ -218,6 +226,8 @@ function selectBar(barIndex) {
 	var ll = bar.lat + "," + bar.lon;
 	var url = "http://maps.google.com/?q=" + ll;
 
+	$('#detailContent').html(''); 
+	
 	$('#detailContent').append(
 			"<a href='" + url + "'>" + 
 			bar.name + 
