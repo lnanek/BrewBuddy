@@ -121,7 +121,8 @@ function onSuccess(position) {
 
 	setCurrentLocationLat(position.coords.latitude);
 	setCurrentLocationLon(position.coords.longitude);
-
+	
+	var allBrewers = [];
 	var allStocks = [];
 
 	for ( var i = 0; i < BARS.length; i++) {
@@ -129,18 +130,47 @@ function onSuccess(position) {
 		for ( var j = 0; j < bar.stock.length; j++) {
 			var stock = bar.stock[j];
 			allStocks.push(stock);
+			
+			var pipeIndex = stock.indexOf('|');
+			if ( -1 != pipeIndex ) {
+				var brewer = stock.substring(pipeIndex + 2);
+				if ( -1 == allBrewers.indexOf(brewer) ) {
+					allBrewers.push(brewer);
+				}
+			}
+			
 		}
 	}
+	allBrewers.sort();
 	allStocks.sort();
 
 	$('#brewList').html(''); 
 	
-	for ( var i = 0; i < allStocks.length; i++) {
-		var stock = allStocks[i];
+	for ( var i = 0; i < allBrewers.length; i++) {
+		var brewer = allBrewers[i];
+		
 
 		var newListItem = '<li data-icon="myarrow"><a onclick=\'selectStock("'
-				+ stock + '")\' >' + stock + '</a></li>';
+				+ brewer + '")\' >' + brewer + '</a></li>';
 		$('#brewList').append($(newListItem));
+		
+		for ( var j = 0; j < allStocks.length; j++) {
+			var stock = allStocks[j];
+			
+			if (-1 != stock.indexOf(brewer) ) {
+				
+				var stockName = stock;
+				var pipeIndex = stock.indexOf('|');
+				if ( -1 != pipeIndex ) {
+					stockName = stock.substring(0, pipeIndex);
+				}
+
+				var newListItem = '<li data-icon="myarrow"><a onclick=\'selectStock("'
+					+ stock + '")\' >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + stockName + '</a></li>';
+				$('#brewList').append($(newListItem));			
+			}
+		}
+		
 	}
 
 	$('#brewList').show();
@@ -179,16 +209,23 @@ function loadBars() {
 		var bar = BARS[i];
 		console.log("bar name: " + bar.name);		
 		
-		if ( -1 != bar.stock.indexOf(stock) ) {
-			barsWithStock.push(bar);
-			
-			bar.id = i;
-			
-			var distanceKm = distance(userLat, userLon, bar.lat, bar.lon);
-			var distanceMi = kmToMiles(distanceKm);
-			var distanceMiRounded = Math.round(distanceMi*10)/10;
-			bar.distanceMiRounded = distanceMiRounded;
-		}
+		for( var j = 0; j < bar.stock.length; j++ ) {
+			var checkedStock = bar.stock[j];
+			if ( -1 != checkedStock.indexOf(stock) ) {
+				
+				if ( -1 == barsWithStock.indexOf(bar) ) {
+					barsWithStock.push(bar);
+					
+					bar.id = i;
+					
+					var distanceKm = distance(userLat, userLon, bar.lat, bar.lon);
+					var distanceMi = kmToMiles(distanceKm);
+					var distanceMiRounded = Math.round(distanceMi*10)/10;
+					bar.distanceMiRounded = distanceMiRounded;
+				}
+				
+			}
+		}		
 	}
 	
 	barsWithStock.sort(function(a,b){return a.distanceMiRounded - b.distanceMiRounded});
@@ -217,7 +254,7 @@ function selectBar(barIndex) {
 	var bar = BARS[barIndex];
 	
 	var ll = bar.lat + "," + bar.lon;
-	var url = "http://maps.apple.com/?q=" + ll;
+	var url = "http://maps.google.com/?q=" + ll;
 
 	$('#detailContent').html(''); 
 	
