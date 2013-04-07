@@ -29,7 +29,30 @@ var BARS = [
 			stock : [ "West Coast IPA | Green Flash Brewing Company",
 					"Irish Red Ale | Rubicon Brewing Company", ],
 			description : "812 21st St, Sacramento, CA<br />(916) 443-6340<br />oldsoulco.com"
-		} ];
+		} ,
+		{
+			name : "Faces Inc",
+			lat : 38.575212,
+			lon : -121.48025,
+			stock : [ "Hefeweizen | Pyramid Breweries"],
+			description : "2000 K St, Sacramento, CA 95811"
+		} ,
+		{
+			name : "Badlands Dance Club",
+			lat : 38.575632,
+			lon : -121.4801,
+			stock : [ "Hefeweizen | Pyramid Breweries"],
+			description : "2003 K St, Sacramento, CA 95811"
+		} ,
+		{
+			name : "Old Tavern Bar & Grill",
+			lat : 38.570901,
+			lon : -121.482589,
+			stock : [ "Hefeweizen | Pyramid Breweries"],
+			description : "1510 20th St, Sacramento, CA 95811"
+		} 		
+		
+		];
 
 var CURRENT_LOCATION_LAT_KEY = "CURRENT_LOCATION_LAT_KEY";
 
@@ -154,6 +177,7 @@ function onSuccess(position) {
 				+ brewer + '")\' >' + brewer + '</a></li>';
 		$('#brewList').append($(newListItem));
 		
+		var displayedBrews = [];
 		for ( var j = 0; j < allStocks.length; j++) {
 			var stock = allStocks[j];
 			
@@ -165,9 +189,12 @@ function onSuccess(position) {
 					stockName = stock.substring(0, pipeIndex);
 				}
 
-				var newListItem = '<li data-icon="myarrow"><a onclick=\'selectStock("'
-					+ stock + '")\' >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + stockName + '</a></li>';
-				$('#brewList').append($(newListItem));			
+				if ( -1 == displayedBrews.indexOf(stockName) ) {
+					var newListItem = '<li data-icon="myarrow"><a onclick=\'selectStock("'
+						+ stock + '")\' >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + stockName + '</a></li>';
+					$('#brewList').append($(newListItem));			
+					displayedBrews.push(stockName);
+				}
 			}
 		}
 		
