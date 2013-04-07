@@ -31,8 +31,10 @@ function onDeviceReady() {
 		var distanceMi = kmToMiles(distanceKm);
 		var distanceMiRounded = Math.round(distanceMi*10)/10;
 		
-		var newListItem = '<li data-icon="myarrow">' 
-			+ bar.name + ' ' + distanceMiRounded + ' mi. </li>';
+		var ll = bar.lat + "," + bar.lon;
+		
+		var newListItem = '<li data-icon="myarrow"><div><a target="_blank" href="http://maps.google.com/?q=' + ll + '" >' 
+			+ bar.name + '</a> ' + distanceMiRounded + ' mi.</div></li>';
 		$('#barList').append($(newListItem));
 		
 	}
