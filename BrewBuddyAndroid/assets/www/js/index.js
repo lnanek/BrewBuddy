@@ -19,7 +19,7 @@ var BARS = [
 			lon : -121.486729,
 			stock : [ "Sierra Nevada Pale Ale | Sierra Nevada Brewing Company",
 					"Lagunitas IPA | Lagunitas Brewing Company",
-					"Firestone Walker&apos;s Reserve | Firestone Walker Brewing Company" ],
+					"Firestone Walkers Reserve | Firestone Walker Brewing Company" ],
 			description : "1531 L St, Sacramento, CA<br />(916) 231-9947<br />deverespub.com"
 		},
 		{
