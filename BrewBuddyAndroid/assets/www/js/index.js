@@ -34,21 +34,21 @@ var BARS = [
 			name : "Faces Inc",
 			lat : 38.575212,
 			lon : -121.48025,
-			stock : [ "Hefeweizen | Pyramid Breweries"],
+			stock : [ "Pyramid Hefeweizen | Pyramid Breweries"],
 			description : "2000 K St, Sacramento, CA 95811"
 		} ,
 		{
 			name : "Badlands Dance Club",
 			lat : 38.575632,
 			lon : -121.4801,
-			stock : [ "Hefeweizen | Pyramid Breweries"],
+			stock : [ "Pyramid Hefeweizen | Pyramid Breweries"],
 			description : "2003 K St, Sacramento, CA 95811"
 		} ,
 		{
 			name : "Old Tavern Bar & Grill",
 			lat : 38.570901,
 			lon : -121.482589,
-			stock : [ "Hefeweizen | Pyramid Breweries"],
+			stock : [ "Pyramid Hefeweizen | Pyramid Breweries"],
 			description : "1510 20th St, Sacramento, CA 95811"
 		} 		
 		
