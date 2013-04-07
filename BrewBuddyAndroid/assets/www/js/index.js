@@ -4,7 +4,7 @@
 
 var BARS = [
 		{
-			name : "Mulvaney&quot;s B&amp;L",
+			name : "Mulvaney&apos;s B&amp;L",
 			lat : 38.568166,
 			lon : -121.443043,
 			stock : [
@@ -14,12 +14,12 @@ var BARS = [
 			description : "1215 19th St, Sacramento, CA<br />(916) 441-6022<br />mulvaneysbl.com"
 		},
 		{
-			name : "DeVere&quot;s Irish Pub",
+			name : "DeVere&apos;s Irish Pub",
 			lat : 38.576058,
 			lon : -121.486729,
 			stock : [ "Sierra Nevada Pale Ale | Sierra Nevada Brewing Company",
 					"Lagunitas IPA | Lagunitas Brewing Company",
-					"Firestone Walker&quot;s Reserve | Firestone Walker Brewing Company" ],
+					"Firestone Walker&apos;s Reserve | Firestone Walker Brewing Company" ],
 			description : "1531 L St, Sacramento, CA<br />(916) 231-9947<br />deverespub.com"
 		},
 		{
