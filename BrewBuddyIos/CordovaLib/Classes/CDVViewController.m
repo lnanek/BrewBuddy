@@ -85,7 +85,7 @@
 
         // load config.xml settings
         [self loadSettings];
-        useSplashScreen = YES;
+        useSplashScreen = NO;
     }
 }
 
@@ -309,11 +309,6 @@
 
     for (NSString* pluginName in self.startupPluginNames) {
         [self getCommandInstance:pluginName];
-    }
-
-    // TODO: Remove this explicit instantiation once we move to cordova-CLI.
-    if (useSplashScreen) {
-        [self getCommandInstance:@"splashscreen"];
     }
 
     // /////////////////
