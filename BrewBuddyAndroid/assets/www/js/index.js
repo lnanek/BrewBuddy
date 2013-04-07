@@ -12,9 +12,20 @@
     // onSuccess Geolocation
     //
     function onSuccess(position) {
+    	
+    	setCurrentLocationLat(position.coords.latitude);
+    	setCurrentLocationLon(position.coords.longitude);
+
+        window.location.href = "brews.html";
+
+        // Show locaction if debug display element present.
         var element = document.getElementById('geolocation');
+        if ( element == null ) {
+        	return;
+        }
         element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
                             'Longitude: '          + position.coords.longitude             + '<br />';
+        
     }
 
     // onError Callback receives a PositionError object
