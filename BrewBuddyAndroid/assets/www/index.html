@@ -18,21 +18,80 @@
 		</div>
 
 		<div data-role="content">
-		
+
 			<p id="loadingMessage">Loading your location...</p>
 
 			<ul id="brewList" data-role="listview" data-filter="true">
-				<!-- Inserted from DB -->				
+				<!-- Inserted from DB -->
 			</ul>
 
 		</div>
 
-		<script type="text/javascript" src="jquery.mobile/jquery-1.7.2.min"></script>
-		<script type="text/javascript" src="js/custom-scripting.js"></script>
-		<script type="text/javascript"
-			src="jquery.mobile/jquery.mobile-1.1.0.js"></script>
-		<script type="text/javascript" src="cordova-2.3.0.js"></script>
-		<script type="text/javascript" src="js/storage.js"></script>
-		<script type="text/javascript" src="js/index.js"></script>
+	</div>
+	
+	<div data-role="page" id="barPage">
+
+		<div data-role="header" data-id="contentHeader" data-position="fixed">
+			<a href="#mainPage" data-icon="home">Home</a>
+			<h1>Brew Buddy</h1>
+		</div>
+
+		<div data-role="content">
+			<ul id="barList" data-role="listview" >
+				<!-- Populated from parsing JSON -->
+			</ul>
+		</div>
+		
+	</div>
+
+	<div data-role="page" id="votedPage">
+
+		<div data-role="header" data-id="contentHeader" data-position="fixed">
+			<a href="#mainPage" data-icon="home">Home</a>
+			<h1>Brew Buddy</h1>
+		</div>
+
+		<div data-role="content">
+
+			<p>Thanks for voting!
+			</p>
+			
+		</div>
+	</div>
+
+	<div data-role="page" id="votePage">
+
+		<div data-role="header" data-id="contentHeader" data-position="fixed">
+			<a href="#mainPage" data-icon="home">Home</a>
+			<h1>Brew Buddy</h1>
+		</div>
+
+		<div data-role="content">
+
+			<p>Vote on the brew you want to see in your area!</p>
+			
+			<p>
+				<a href="voted.html" data-icon="search" data-role="button">North Coast Brewing Company’s Imperial Stout</a>
+			</p>
+			
+			<p>
+				<a href="voted.html" data-icon="search" data-role="button">Big Rock Rock Creek</a>
+			</p>
+			<p>
+				<a href="voted.html" data-icon="search" data-role="button">Goose Island Madame Rose</a>
+			</p>
+			<p>
+				<a href="voted.html" data-icon="search" data-role="button">Dogfish Head World Wide Stout</a>
+			</p>
+			
+		</div>
+	</div>
+	
+	<script type="text/javascript" src="jquery.mobile/jquery-1.7.2.min"></script>
+	<script type="text/javascript" src="js/custom-scripting.js"></script>
+	<script type="text/javascript"
+		src="jquery.mobile/jquery.mobile-1.1.0.js"></script>
+	<script type="text/javascript" src="cordova-2.3.0.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>
