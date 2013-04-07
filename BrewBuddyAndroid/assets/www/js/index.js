@@ -223,6 +223,13 @@ function selectBar(barIndex) {
 			bar.name + 
 			"<br /><br />" + 
 			bar.description + 
-			"</a>");
+			"</a><br /><br />These brews are on tap:<br />");
+	
+	for( var i = 0; i < bar.stock.length; i++ ) {
+		var stock = bar.stock[i];
+
+		$('#detailContent').append(stock + 
+				"<br /><br />");
+	}
 	
 }
